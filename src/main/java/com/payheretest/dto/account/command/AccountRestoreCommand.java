@@ -3,13 +3,13 @@ package com.payheretest.dto.account.command;
 import lombok.Getter;
 
 @Getter
-public class AccountRestoreCommand {
+public class AccountRestoreCommand extends AccountBaseCommand {
 
-    private String userId;
+    private String email;
     private Long accountId;
 
-    public AccountRestoreCommand(String userId, Long accountId) {
-        this.userId = userId;
+    public AccountRestoreCommand(String email, Long accountId) {
+        this.email = email;
         this.accountId = accountId;
     }
 }

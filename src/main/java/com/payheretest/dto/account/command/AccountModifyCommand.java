@@ -3,7 +3,7 @@ package com.payheretest.dto.account.command;
 import lombok.Getter;
 
 @Getter
-public class AccountModifyCommand {
+public class AccountModifyCommand extends AccountBaseCommand {
 
     private static final int ZERO = 0;
 

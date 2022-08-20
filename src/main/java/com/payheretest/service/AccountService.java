@@ -4,6 +4,7 @@ import com.payheretest.dto.account.command.AccountAddCommand;
 import com.payheretest.dto.account.command.AccountDeleteCommand;
 import com.payheretest.dto.account.command.AccountModifyCommand;
 import com.payheretest.dto.account.command.AccountRestoreCommand;
+import com.payheretest.exception.NotFoundAccountException;
 import com.payheretest.model.Account;
 import com.payheretest.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +34,6 @@ public class AccountService {
         log.info("account modify");
 
         Account account = findAccountById(command.getAccountId());
-
-        // TODO 없을경우
-
         account.modifyAccount(command);
 
         repository.save(account);
@@ -43,8 +41,6 @@ public class AccountService {
 
     public void delete(AccountDeleteCommand command) {
         log.info("account delete");
-
-        // TODO 없을경우
 
         Account account = findAccountById(command.getAccountId());
         account.setActive(false);
@@ -56,9 +52,6 @@ public class AccountService {
         log.info("account restore");
 
         Account account = findAccountById(command.getAccountId());
-
-        // TODO 없을경우
-
         account.setActive(true);
 
         repository.save(account);
@@ -66,6 +59,6 @@ public class AccountService {
 
     public Account findAccountById(Long accountId) {
         Optional<Account> account = repository.findById(accountId);
-        return account.get();
+        return account.orElseThrow(NotFoundAccountException::new);
     }
 }

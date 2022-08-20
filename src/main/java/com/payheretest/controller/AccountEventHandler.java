@@ -1,6 +1,7 @@
 package com.payheretest.controller;
 
 import com.payheretest.dto.account.AccountEventRequest;
+import com.payheretest.dto.account.command.*;
 import com.payheretest.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,21 +12,25 @@ public class AccountEventHandler {
 
     private final AccountService accountService;
 
-    public void handle(AccountEventRequest request) {
+    public AccountBaseCommand handle(AccountEventRequest request) {
 
         switch (request.getAction()) {
             case ADD:
-                accountService.add(request.toAccountAddCommand());
-                break;
+                AccountAddCommand accountAddCommand = request.toAccountAddCommand();
+                accountService.add(accountAddCommand);
+                return accountAddCommand;
             case MODIFY:
-                accountService.modify(request.toAccountModCommand());
-                break;
+                AccountModifyCommand accountModifyCommand = request.toAccountModCommand();
+                accountService.modify(accountModifyCommand);
+                return accountModifyCommand;
             case DELETE:
-                accountService.delete(request.toAccountDelCommand());
-                break;
+                AccountDeleteCommand accountDeleteCommand = request.toAccountDelCommand();
+                accountService.delete(accountDeleteCommand);
+                return accountDeleteCommand;
             case RESTORE:
-                accountService.restore(request.toAccountRestoreCommand());
-                break;
+                AccountRestoreCommand accountRestoreCommand = request.toAccountRestoreCommand();
+                accountService.restore(accountRestoreCommand);
+                return accountRestoreCommand;
             default:
                 throw new IllegalArgumentException("지원하지 않는 ACTION 입니다. action: " + request.getAction());
         }
