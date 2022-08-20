@@ -28,7 +28,8 @@ public class JwtTokenProvider {
     private String secretKey;
 
     //토큰 유효시간 설정
-    private Long tokenValidTime = 240 * 60 * 1000L;
+    @Value("${jwt.token-validity-in-seconds}")
+    private Long tokenValidTime;
 
     //secretkey를 미리 인코딩 해줌.
     @PostConstruct
