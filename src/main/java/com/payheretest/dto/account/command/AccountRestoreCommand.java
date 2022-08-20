@@ -1,15 +1,15 @@
 package com.payheretest.dto.account.command;
 
+import lombok.Getter;
+
+@Getter
 public class AccountRestoreCommand {
 
     private String userId;
-    private String accountId;
+    private Long accountId;
 
-    public AccountRestoreCommand(String userId, String accountId) {
-        // valid?
-
+    public AccountRestoreCommand(String userId, Long accountId) {
         this.userId = userId;
         this.accountId = accountId;
     }
-
 }

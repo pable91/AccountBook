@@ -15,7 +15,7 @@ public class AccountModCommandTest {
     @DisplayName("money 가 음수값이면 예외를 던진다.")
     public void moneyExceptionTest(int money) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new AccountModifyCommand("userid", "accountid", money, "test");
+            new AccountModifyCommand("userid", 1L, money, "test");
         });
     }
 
@@ -24,7 +24,7 @@ public class AccountModCommandTest {
     @DisplayName("content 가 null 이면 예외를 던진다.")
     public void contentExceptionTest(String content) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new AccountModifyCommand("userid", "accountid", 1000, content);
+            new AccountModifyCommand("userid", 1L, 1000, content);
         });
     }
 }

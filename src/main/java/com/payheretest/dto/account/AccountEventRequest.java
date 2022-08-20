@@ -12,13 +12,13 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class AccountEventRequest {
 
-    @NotBlank
-    private String userId;
+    @NotBlank(message = "email 값을 입력해주세요.")
+    private String email;
 
     @NotNull
     private Action action;
 
-    private String accountId;
+    private Long accountId;
 
     private String content;
 
@@ -33,7 +33,7 @@ public class AccountEventRequest {
 
     public AccountAddCommand toAccountAddCommand() {
         return new AccountAddCommand(
-                userId,
+                email,
                 money,
                 content
         );
@@ -41,7 +41,7 @@ public class AccountEventRequest {
 
     public AccountModifyCommand toAccountModCommand() {
         return new AccountModifyCommand(
-                userId,
+                email,
                 accountId,
                 money,
                 content
@@ -50,14 +50,14 @@ public class AccountEventRequest {
 
     public AccountDeleteCommand toAccountDelCommand() {
         return new AccountDeleteCommand(
-                userId,
+                email,
                 accountId
         );
     }
 
     public AccountRestoreCommand toAccountRestoreCommand() {
         return new AccountRestoreCommand(
-                userId,
+                email,
                 accountId
         );
     }

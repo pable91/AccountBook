@@ -18,9 +18,8 @@ public class UserController {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    //회원가입
-    @ResponseBody
     @PostMapping("/user/signup")
+    @ResponseBody
     public User signUp(@RequestBody UserDto userDto) {
         User user = userService.signup(userDto);
 

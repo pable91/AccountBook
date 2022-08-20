@@ -1,17 +1,20 @@
 package com.payheretest.dto.account.command;
 
+import lombok.Getter;
+
+@Getter
 public class AccountAddCommand {
 
     private static final int ZERO = 0;
 
-    private String userId;
+    private String email;
     private int money;
     private String content;
 
-    public AccountAddCommand(String userId, int money, String content) {
+    public AccountAddCommand(String email, int money, String content) {
         validate(money, content);
 
-        this.userId = userId;
+        this.email = email;
         this.money = money;
         this.content = content;
     }
