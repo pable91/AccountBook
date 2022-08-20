@@ -7,9 +7,13 @@ import com.payheretest.model.User;
 import com.payheretest.model.UserRoleEnum;
 import com.payheretest.model.response.SuccessResponse;
 import com.payheretest.service.UserService;
+import io.jsonwebtoken.lang.Strings;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,11 +40,15 @@ public class UserController {
         UserRoleEnum role = user.getRole();
 
         String token = jwtTokenProvider.createToken(checkEmail, role);
-//        response.setHeader("JWT", token);
-
-//        return ResponseEntity.ok().header("JWT", token).body(token);
 
         return SuccessResponse.toLoginResponseEntity(token);
     }
 
+    @PostMapping("/user/logout")
+    public ResponseEntity logout() {
+
+        // header 에 있는 토큰값을 빈값으로 만듬.
+        String token = "";
+        return SuccessResponse.toLogoutResponseEntity(token);
+    }
 }

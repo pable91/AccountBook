@@ -33,6 +33,16 @@ public class SuccessResponse<T> {
                 );
     }
 
+    public static ResponseEntity<SuccessResponse> toSignUpResponseEntity(Object data) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(SuccessResponse.builder()
+                        .result("Success")
+                        .type("회원가입 완료")
+                        .data(data)
+                        .build()
+                );
+    }
 
     public static ResponseEntity<SuccessResponse> toLoginResponseEntity(String data) {
         return ResponseEntity
@@ -46,13 +56,14 @@ public class SuccessResponse<T> {
                 );
     }
 
-    public static ResponseEntity<SuccessResponse> toSignUpResponseEntity(Object data) {
+    public static ResponseEntity<SuccessResponse> toLogoutResponseEntity(String tokenValue) {
         return ResponseEntity
                 .status(HttpStatus.OK)
+                .header("JWT", tokenValue)
                 .body(SuccessResponse.builder()
                         .result("Success")
-                        .type("회원가입 완료")
-                        .data(data)
+                        .type("로그아웃 완료")
+                        .data("")
                         .build()
                 );
     }
