@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -33,7 +34,7 @@ public class AccountService {
     public void modify(AccountModifyCommand command) {
         log.info("account modify");
 
-        Account account = findAccountById(command.getAccountId());
+        Account account = findActiveAccountByEmail(command.getEmail());
         account.modifyAccount(command);
 
         repository.save(account);
@@ -42,7 +43,7 @@ public class AccountService {
     public void delete(AccountDeleteCommand command) {
         log.info("account delete");
 
-        Account account = findAccountById(command.getAccountId());
+        Account account = findActiveAccountByEmail(command.getEmail());
         account.setActive(false);
 
         repository.save(account);
@@ -51,14 +52,39 @@ public class AccountService {
     public void restore(AccountRestoreCommand command) {
         log.info("account restore");
 
-        Account account = findAccountById(command.getAccountId());
-        account.setActive(true);
+        Optional<Account> account = repository.findByEmail(command.getEmail());
 
-        repository.save(account);
+        Account findAccount = account
+                .orElseThrow(() -> new NotFoundAccountException("가계부 정보를 찾을 수 없습니다"));
+
+        findAccount.setActive(true);
+
+        repository.save(findAccount);
     }
 
-    public Account findAccountById(Long accountId) {
-        Optional<Account> account = repository.findById(accountId);
-        return account.orElseThrow(NotFoundAccountException::new);
+    public Account findActiveAccountByEmail(String email) {
+        Optional<Account> account = repository.findActiveByEmail(email);
+        return account
+                .orElseThrow(() -> new NotFoundAccountException("가계부 정보를 찾을 수 없습니다"));
     }
+
+    @Transactional(readOnly = true)
+    public List<Account> findAll() {
+        List<Account> accounts = repository.findActiveAll();
+
+        if (accounts.isEmpty()) {
+            throw new NotFoundAccountException("가계부 정보를 찾을 수 없습니다");
+        }
+
+        return accounts;
+    }
+
+    @Transactional(readOnly = true)
+    public Account findByEmail(String email) {
+        Optional<Account> account = repository.findByEmail(email);
+
+        return account
+                .orElseThrow(() -> new NotFoundAccountException("가계부 정보를 찾을 수 없습니다"));
+    }
+
 }

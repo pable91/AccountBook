@@ -3,6 +3,7 @@ package com.payheretest.model;
 import com.payheretest.dto.account.command.AccountAddCommand;
 import com.payheretest.dto.account.command.AccountModifyCommand;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Setter
+@Getter
 public class Account extends BaseTimeEntity {
 
     @Id

@@ -33,6 +33,17 @@ public class SuccessResponse<T> {
                 );
     }
 
+    public static ResponseEntity<SuccessResponse> toResponseEntity(String type, Object obj) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(SuccessResponse.builder()
+                        .result("Success")
+                        .type(type)
+                        .data(obj)
+                        .build()
+                );
+    }
+
     public static ResponseEntity<SuccessResponse> toSignUpResponseEntity(Object data) {
         return ResponseEntity
                 .status(HttpStatus.OK)
