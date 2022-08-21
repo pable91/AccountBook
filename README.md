@@ -7,7 +7,7 @@
     - java 11
     - Spring Security + JWT
 
-# 2️⃣ API
+# 2️⃣ API 요청 및 응답
 ### 회원가입[POST]
     http://localhost:8080/user/signup
     
@@ -17,6 +17,17 @@
         "password" : "1234566"
     }
 
+---
+    
+    {
+    	"result": "Success",
+    	"type": "회원가입 완료",
+    	"data": {
+        	"id": 1,
+        	"email": "kim@naver.com",
+        	"password": "$2a$10$6o2wB8WKAFJdccqWBZUDZ.uUknPljnHe9XIqOPsG9Yuz44gGdBTP."
+    	}
+    }
 ### 로그인[POST]
     http://localhost:8080/user/login
     
@@ -24,10 +35,26 @@
       "email" : "kim@naver.com",
       "password" : "123456"
     }
+    
+---
+    
+     {
+    	"result": "Success",
+    	"type": "로그인 완료",
+    	"data": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2NjEwOTM0MjgsImV4cCI6MTY2MTA5MzUxNSwiZW1haWwiOiJiIn0.Mim4DlhnC8MkHGfpWrmW3vMx7eqGz6jN8emDNTb3AEs"
+    }
 
 ### 로그아웃[POST]
     http://localhost:8080/user/logout
 
+---
+
+    {
+    	"result": "Success",
+    	"type": "로그아웃 완료",
+    	"data": ""
+    }
+    
 ### 가계부 내역 등록[POST]
     http://localhost:8080/account/events
 
@@ -37,6 +64,19 @@
       "money" : "100",
       "content" : "test content"
     }
+    
+---
+    
+    {
+    	"result": "Success",
+    	"type": "요청한 가계부 등록이 성공하였습니다",
+    	"data": {
+        		"email": "kim@naver.com",
+        		"money": 100,
+        		"content": "test content"
+    		}
+     }
+
 ### 가계부 내역 수정[POST]
     http://localhost:8080/account/events
 
@@ -47,6 +87,20 @@
       "money" : "500",
       "content" : "modify ok"
     }
+    
+---
+
+	{
+    	"result": "Success",
+    	"type": "요청한 가계부 수정을 성공하였습니다",
+    	"data": {
+        		"email": "kim@naver.com",
+        		"accountId": 1,
+        		"money": 500,
+        		"content": "modify ok"
+    		}
+	}
+
 ### 가계부 내역 삭제[POST]
     http://localhost:8080/account/events
     
@@ -55,6 +109,17 @@
       "action" : "DELETE",
       "accountId" : "1"
     }
+
+---
+	{
+    	"result": "Success",
+    	"type": "요청한 가계부 삭제가 성공하였습니다",
+    	"data": {
+	        	"email": "kim@naver.com",
+        		"accountId": 1
+    		}
+	}
+	
 ### 가계부 내역 되돌리기[POST]
     http://localhost:8080/account/events
 
@@ -62,6 +127,17 @@
       "email" : "kim@naver.com",
       "action" : "RESTORE",
       "accountId" : "1"
+    }
+    
+---
+    
+    {
+    	"result": "Success",
+    	"type": "요청한 가계부를 복구 성공하였습니다",
+    	"data": {
+        	"email": "kim@naver.com",
+        	"accountId": 1
+    	}
     }
 ### 가계부 내역 전체 보기[GET]
     http://localhost:8080/account/find
