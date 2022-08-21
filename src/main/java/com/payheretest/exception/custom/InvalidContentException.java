@@ -1,4 +1,4 @@
-package com.payheretest.dto.account.command;
+package com.payheretest.exception.custom;
 
 import com.payheretest.exception.custom.CustomException;
 import com.payheretest.model.response.ErrorCode;

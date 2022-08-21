@@ -1,8 +1,8 @@
 package com.payheretest.dto.account;
 
 import com.payheretest.dto.account.command.AccountAddCommand;
-import com.payheretest.dto.account.command.InvalidContentException;
-import com.payheretest.dto.account.command.InvalidMoneyException;
+import com.payheretest.exception.custom.InvalidContentException;
+import com.payheretest.exception.custom.InvalidMoneyException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
