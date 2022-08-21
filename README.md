@@ -68,3 +68,32 @@
 
 ### 가계부 내역 단건 보기[GET]
     http://localhost:8080/account/find/{email}
+
+# 3️⃣ API 성공시 응답 JSON
+
+# 4️⃣ DDL
+### account(가계부 내역)
+    create table payhere.account
+    (
+	    account_id bigint not null
+	    	        primary key,
+	    created_date datetime null,
+	    modified_date datetime null,
+	    active bit not null,
+	    content varchar(255) null,
+	    email varchar(255) null,
+	    money int not null
+    );
+    
+### User()
+    create table payhere.user
+    (
+	    id bigint auto_increment
+		        primary key,
+	    email varchar(255) not null,
+	    password varchar(255) not null,
+	    constraint UK_ob8kqyqqgmefl0aco34akdtpe
+		        unique (email)
+    );
+
+
