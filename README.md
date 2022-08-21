@@ -1,4 +1,4 @@
-# payhere
+# 페이히어 과제 README
 
 # 1️⃣ 기술 스택
     - SpringBoot
