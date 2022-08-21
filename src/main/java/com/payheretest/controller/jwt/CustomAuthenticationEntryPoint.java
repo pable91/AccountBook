@@ -1,4 +1,4 @@
-package com.payheretest.exception;
+package com.payheretest.controller.jwt;
 
 import com.payheretest.exception.custom.NotLoginException;
 import org.springframework.security.core.AuthenticationException;

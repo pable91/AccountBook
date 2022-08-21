@@ -38,7 +38,7 @@ public class JwtTokenProvider {
     }
 
     //JWT 토큰 생성
-    public String createToken(String email, UserRoleEnum role) {
+    public String createToken(String email) {
 
         //payload 설정
         //registered claims
@@ -50,7 +50,7 @@ public class JwtTokenProvider {
 
         //private claims
         claims.put("email", email); // 정보는 key - value 쌍으로 저장.
-        claims.put("role", role);
+//        claims.put("role", role);
 
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT") //헤더
@@ -62,7 +62,7 @@ public class JwtTokenProvider {
     //JWT 토큰에서 인증정보 조회
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(this.getUserPk(token));
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(userDetails, "", null);
     }
 
     // 토큰에서 회원 정보 추출

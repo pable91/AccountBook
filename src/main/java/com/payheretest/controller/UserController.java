@@ -7,13 +7,12 @@ import com.payheretest.model.User;
 import com.payheretest.model.UserRoleEnum;
 import com.payheretest.model.response.SuccessResponse;
 import com.payheretest.service.UserService;
-import io.jsonwebtoken.lang.Strings;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,9 +36,8 @@ public class UserController {
 
         User user = userService.login(loginUserDto);
         String checkEmail = user.getEmail();
-        UserRoleEnum role = user.getRole();
 
-        String token = jwtTokenProvider.createToken(checkEmail, role);
+        String token = jwtTokenProvider.createToken(checkEmail);
 
         return SuccessResponse.toLoginResponseEntity(token);
     }

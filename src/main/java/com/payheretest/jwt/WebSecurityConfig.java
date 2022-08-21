@@ -1,7 +1,7 @@
 package com.payheretest.jwt;
 
-import com.payheretest.exception.CustomAccessDeniedHandler;
-import com.payheretest.exception.CustomAuthenticationEntryPoint;
+import com.payheretest.controller.jwt.CustomAccessDeniedHandler;
+import com.payheretest.controller.jwt.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint());
 
         //access Denial handler
-        http.exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler());
+//        http.exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler());
 
     }
 }

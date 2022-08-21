@@ -1,4 +1,4 @@
-package com.payheretest.controller;
+package com.payheretest.controller.jwt;
 
 import com.payheretest.model.response.ErrorCode;
 import com.payheretest.exception.custom.NotAuthorizedException;
@@ -14,8 +14,8 @@ public class TokenExceptionController {
         throw new NotLoginException(ErrorCode.NO_LOGIN);
     }
 
-    @GetMapping("/exception/access")
-    public void denied() {
-        throw new NotAuthorizedException(ErrorCode.NO_ADMIN);
-    }
+//    @GetMapping("/exception/access")
+//    public void denied() {
+//        throw new NotAuthorizedException(ErrorCode.NO_ADMIN);
+//    }
 }

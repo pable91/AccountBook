@@ -26,9 +26,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    private static final String ADMIN_PW = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
-
-
     public User signup(UserDto userDto) {
         String email = userDto.getEmail();
 
@@ -42,14 +39,8 @@ public class UserService {
         String password = passwordEncoder.encode(userDto.getPassword());
 
         UserRoleEnum role = UserRoleEnum.ROLE_MEMBER;
-//        if (userDto.isAdmin()) {
-//            if (!userDto.getAdminToken().equals(ADMIN_PW)) {
-//                throw new CustomException(ErrorCode.NO_MATCH_PASSWORD);
-//            }
-//            role = UserRoleEnum.ROLE_ADMIN;
-//        }
 
-        User user = new User(email, password, role);
+        User user = new User(email, password);
         userRepository.save(user);
         return user;
     }

@@ -1,6 +1,5 @@
-package com.payheretest.exception;
+package com.payheretest.controller.jwt;
 
-import com.payheretest.exception.custom.NotAuthorizedException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
