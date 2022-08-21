@@ -1,7 +1,8 @@
 package com.payheretest.dto.account;
 
-import com.payheretest.dto.account.command.AccountAddCommand;
 import com.payheretest.dto.account.command.AccountModifyCommand;
+import com.payheretest.dto.account.command.InvalidContentException;
+import com.payheretest.dto.account.command.InvalidMoneyException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +15,7 @@ public class AccountModCommandTest {
     @ValueSource(ints= {-100, -1})
     @DisplayName("money 가 음수값이면 예외를 던진다.")
     public void moneyExceptionTest(int money) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(InvalidMoneyException.class, () -> {
             new AccountModifyCommand("userid", 1L, money, "test");
         });
     }
@@ -23,7 +24,7 @@ public class AccountModCommandTest {
     @NullSource
     @DisplayName("content 가 null 이면 예외를 던진다.")
     public void contentExceptionTest(String content) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(InvalidContentException.class, () -> {
             new AccountModifyCommand("userid", 1L, 1000, content);
         });
     }

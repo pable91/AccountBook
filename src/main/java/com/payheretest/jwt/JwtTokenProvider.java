@@ -27,11 +27,9 @@ public class JwtTokenProvider {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    //토큰 유효시간 설정
     @Value("${jwt.token-validity-in-seconds}")
     private Long tokenValidTime;
 
-    //secretkey를 미리 인코딩 해줌.
     @PostConstruct
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
@@ -49,7 +47,7 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(now.getTime() + tokenValidTime)); // 토큰 만료기한
 
         //private claims
-        claims.put("email", email); // 정보는 key - value 쌍으로 저장.
+        claims.put("email", email);
 //        claims.put("role", role);
 
         return Jwts.builder()

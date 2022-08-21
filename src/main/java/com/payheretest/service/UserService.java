@@ -1,5 +1,7 @@
 package com.payheretest.service;
 
+import com.payheretest.exception.custom.NoMatchPasswordException;
+import com.payheretest.exception.custom.NotFoundUserException;
 import com.payheretest.model.response.ErrorCode;
 import com.payheretest.exception.custom.SameEmailException;
 import com.payheretest.model.User;
@@ -29,29 +31,26 @@ public class UserService {
     public User signup(UserDto userDto) {
         String email = userDto.getEmail();
 
-        // 회원 ID 중복 확인
         Optional<User> found = userRepository.findByEmail(email);
         if (found.isPresent()) {
             throw new SameEmailException(ErrorCode.SAME_EMAIL);
         }
 
-        //패스워드 암호화
         String password = passwordEncoder.encode(userDto.getPassword());
 
-        UserRoleEnum role = UserRoleEnum.ROLE_MEMBER;
+//        UserRoleEnum role = UserRoleEnum.ROLE_MEMBER;
 
         User user = new User(email, password);
         userRepository.save(user);
         return user;
     }
 
-    //로그인
     public User login(LoginUserDto loginUserDto) {
         User user = userRepository.findByEmail(loginUserDto.getEmail()).orElseThrow(
-                () -> new CustomException(ErrorCode.NO_USER)
+                () -> new NotFoundUserException(ErrorCode.NO_USER)
         );
         if (!passwordEncoder.matches(loginUserDto.getPassword(), user.getPassword())) {
-            throw new CustomException(ErrorCode.NO_MATCH_PASSWORD);
+            throw new NoMatchPasswordException(ErrorCode.NO_MATCH_PASSWORD);
         }
         return user;
     }

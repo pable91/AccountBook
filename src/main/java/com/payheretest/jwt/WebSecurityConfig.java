@@ -1,6 +1,5 @@
 package com.payheretest.jwt;
 
-import com.payheretest.controller.jwt.CustomAccessDeniedHandler;
 import com.payheretest.controller.jwt.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

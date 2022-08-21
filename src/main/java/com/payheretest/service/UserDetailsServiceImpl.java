@@ -21,7 +21,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new CustomException(ErrorCode.NO_USER));
 
-        //UserDetailsImpl에서 정의한 생성자
         return new UserDetailsImpl(user);
     }
 }

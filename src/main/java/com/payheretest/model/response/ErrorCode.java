@@ -13,7 +13,9 @@ public enum ErrorCode {
     NO_LOGIN(HttpStatus.UNAUTHORIZED, "로그인이 필요합니다"),
 //    NO_ADMIN(HttpStatus.FORBIDDEN, "권한이 없는 사용자입니다"),
 
-    NOT_FOUND_ACCOUNT(HttpStatus.BAD_REQUEST, "가계부 정보를 찾을 수 없습니다");
+    NOT_FOUND_ACCOUNT(HttpStatus.BAD_REQUEST, "가계부 정보를 찾을 수 없습니다"),
+    INVALID_MONEY(HttpStatus.BAD_REQUEST, "money 는 양수여야 합니다"),
+    CONTENT_NULL(HttpStatus.BAD_REQUEST, "content 가 null 입니다");
 
     private HttpStatus httpStatus;
     private String detail;

@@ -33,7 +33,6 @@ public class UserController {
     @PostMapping("/user/login")
     @ResponseBody
     public ResponseEntity login(@RequestBody LoginUserDto loginUserDto) {
-
         User user = userService.login(loginUserDto);
         String checkEmail = user.getEmail();
 

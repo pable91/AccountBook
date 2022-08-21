@@ -1,5 +1,6 @@
 package com.payheretest.dto.account.command;
 
+import com.payheretest.model.response.ErrorCode;
 import lombok.Getter;
 
 @Getter
@@ -21,9 +22,9 @@ public class AccountAddCommand extends AccountBaseCommand {
 
     private void validate(int money, String content) {
         if (money <= ZERO)
-            throw new IllegalArgumentException("money 는 0을 넘어야 합니다.");
+            throw new InvalidMoneyException(ErrorCode.INVALID_MONEY);
 
         if (content == null)
-            throw new IllegalArgumentException("content 가 null 입니다");
+            throw new InvalidContentException(ErrorCode.CONTENT_NULL);
     }
 }
