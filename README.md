@@ -74,7 +74,7 @@
         		"email": "kim@naver.com",
         		"money": 100,
         		"content": "test content"
-    		}
+    	}
      }
 
 ### 가계부 내역 수정[POST]
@@ -98,7 +98,7 @@
         		"accountId": 1,
         		"money": 500,
         		"content": "modify ok"
-    		}
+    	}
 	}
 
 ### 가계부 내역 삭제[POST]
@@ -117,7 +117,7 @@
     	"data": {
 	        	"email": "kim@naver.com",
         		"accountId": 1
-    		}
+    	}
 	}
 	
 ### 가계부 내역 되돌리기[POST]
@@ -135,19 +135,69 @@
     	"result": "Success",
     	"type": "요청한 가계부를 복구 성공하였습니다",
     	"data": {
-        	"email": "kim@naver.com",
-        	"accountId": 1
+        		"email": "kim@naver.com",
+        		"accountId": 1
     	}
     }
+    
 ### 가계부 내역 전체 보기[GET]
     http://localhost:8080/account/find
+    
+---
+	
+	{
+	    "result": "Success",
+	    "type": "find all account",
+	    "data": [
+	        {
+	            "createdDate": "2022-08-22T00:18:40",
+	            "modifiedDate": "2022-08-22T00:21:55",
+	            "id": 1,
+	            "email": "kim@naver.com",
+	            "money": 100,
+	            "content": "test content",
+	            "active": true
+	        },
+	        {
+	            "createdDate": "2022-08-22T00:24:28",
+	            "modifiedDate": "2022-08-22T00:24:28",
+	            "id": 2,
+	            "email": "you@naver.com",
+	            "money": 20000,
+	            "content": "test content",
+	            "active": true
+	        },
+	        {
+	            "createdDate": "2022-08-22T00:24:47",
+	            "modifiedDate": "2022-08-22T00:24:47",
+	            "id": 3,
+	            "email": "tea@naver.com",
+	            "money": 20000,
+	            "content": "test content",
+	            "active": true
+	        }
+	    ]
+	}
 
 ### 가계부 내역 단건 보기[GET]
     http://localhost:8080/account/find/{email}
+    
+---
+	{
+	    "result": "Success",
+	    "type": "find account",
+	    "data": {
+	        "createdDate": "2022-08-22T00:18:40",
+	        "modifiedDate": "2022-08-22T00:21:55",
+	        "id": 1,
+	        "email": "kim@naver.com",
+	        "money": 100,
+	        "content": "test content",
+	        "active": true
+	    }
+	}
 
-# 3️⃣ API 성공시 응답 JSON
-
-# 4️⃣ DDL
+# 3️⃣ DDL
 ### account(가계부 내역)
     create table payhere.account
     (
