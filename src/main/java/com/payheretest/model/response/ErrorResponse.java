@@ -1,6 +1,5 @@
 package com.payheretest.model.response;
 
-import com.payheretest.exception.ErrorCode;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.ResponseEntity;

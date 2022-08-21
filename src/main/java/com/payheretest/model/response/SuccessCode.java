@@ -1,4 +1,4 @@
-package com.payheretest.exception;
+package com.payheretest.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

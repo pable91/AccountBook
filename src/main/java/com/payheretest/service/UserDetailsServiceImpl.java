@@ -1,9 +1,9 @@
 package com.payheretest.service;
 
-import com.payheretest.exception.ErrorCode;
+import com.payheretest.model.response.ErrorCode;
 import com.payheretest.model.User;
 import com.payheretest.repository.UserRepository;
-import com.payheretest.exception.CustomException;
+import com.payheretest.exception.custom.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -4,7 +4,8 @@ import com.payheretest.dto.account.command.AccountAddCommand;
 import com.payheretest.dto.account.command.AccountDeleteCommand;
 import com.payheretest.dto.account.command.AccountModifyCommand;
 import com.payheretest.dto.account.command.AccountRestoreCommand;
-import com.payheretest.exception.NotFoundAccountException;
+import com.payheretest.model.response.ErrorCode;
+import com.payheretest.exception.custom.NotFoundAccountException;
 import com.payheretest.model.Account;
 import com.payheretest.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +56,7 @@ public class AccountService {
         Optional<Account> account = repository.findByEmail(command.getEmail());
 
         Account findAccount = account
-                .orElseThrow(() -> new NotFoundAccountException("가계부 정보를 찾을 수 없습니다"));
+                .orElseThrow(() -> new NotFoundAccountException(ErrorCode.NOT_FOUND_ACCOUNT));
 
         findAccount.setActive(true);
 
@@ -65,7 +66,7 @@ public class AccountService {
     public Account findActiveAccountByEmail(String email) {
         Optional<Account> account = repository.findActiveByEmail(email);
         return account
-                .orElseThrow(() -> new NotFoundAccountException("가계부 정보를 찾을 수 없습니다"));
+                .orElseThrow(() -> new NotFoundAccountException(ErrorCode.NOT_FOUND_ACCOUNT));
     }
 
     @Transactional(readOnly = true)
@@ -73,7 +74,7 @@ public class AccountService {
         List<Account> accounts = repository.findActiveAll();
 
         if (accounts.isEmpty()) {
-            throw new NotFoundAccountException("가계부 정보를 찾을 수 없습니다");
+            throw new NotFoundAccountException(ErrorCode.NOT_FOUND_ACCOUNT);
         }
 
         return accounts;
@@ -84,7 +85,7 @@ public class AccountService {
         Optional<Account> account = repository.findByEmail(email);
 
         return account
-                .orElseThrow(() -> new NotFoundAccountException("가계부 정보를 찾을 수 없습니다"));
+                .orElseThrow(() -> new NotFoundAccountException(ErrorCode.NOT_FOUND_ACCOUNT));
     }
 
 }

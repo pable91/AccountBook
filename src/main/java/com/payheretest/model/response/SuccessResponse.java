@@ -2,7 +2,6 @@ package com.payheretest.model.response;
 
 import com.payheretest.dto.account.AccountEventRequest;
 import com.payheretest.dto.account.command.AccountBaseCommand;
-import com.payheretest.exception.SuccessCode;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
