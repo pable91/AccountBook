@@ -5,7 +5,7 @@
     - JPA
     - MySQL
     - java 11
-    - Spring Security + JWT
+    - JWT
 
 # 2️⃣ API 요청 및 응답
 ### 회원가입[POST]
