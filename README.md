@@ -1,11 +1,11 @@
-README
+# README
 
 # 1️⃣ 기술 스택
     - SpringBoot
     - JPA
     - MySQL
     - java 11
-    - Spring Security + JWT
+    - JWT
 
 # 2️⃣ API 요청 및 응답
 ### 회원가입[POST]
@@ -197,29 +197,5 @@ README
 	    }
 	}
 
-# 3️⃣ DDL
-### account(가계부 내역)
-    create table payhere.account
-    (
-	    account_id bigint not null
-	    	        primary key,
-	    created_date datetime null,
-	    modified_date datetime null,
-	    active bit not null,
-	    content varchar(255) null,
-	    email varchar(255) null,
-	    money int not null
-    );
-    
-### User()
-    create table payhere.user
-    (
-	    id bigint auto_increment
-		        primary key,
-	    email varchar(255) not null,
-	    password varchar(255) not null,
-	    constraint UK_ob8kqyqqgmefl0aco34akdtpe
-		        unique (email)
-    );
 
 
